@@ -3,12 +3,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const trans  = require('../mail/transporter');
+require('dotenv').config();
 
-const trans = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: 587,
-  auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS }
-});
 
 exports.signup = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -46,7 +43,6 @@ exports.forgot = async (req, res) => {
   ]);
   const link = `${process.env.FRONT_URL}/reset-password/${raw}`;
   await trans.sendMail({
-    from: process.env.MAIL_FROM,
     to: email,
     subject: 'Reset password',
     html: `<p>Reset link valid 5 min: <a href="${link}">${link}</a></p>`
