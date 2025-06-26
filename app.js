@@ -10,6 +10,6 @@ app.use(express.json());
 app.use('/api/user', userRouter);
 app.use('/api/profile', profilRoutes);
 
-app.listen(process.env.PORT || 5000, () =>
+app.listen(process.env.PORT , () =>
   console.log('API running on port', process.env.PORT || 5000)
 );
