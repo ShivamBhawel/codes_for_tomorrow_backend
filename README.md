@@ -32,7 +32,7 @@ CREATE TABLE UserTable (
 
 🚀 API Endpoints
 ✅ 1. Signup API
-Endpoint: POST http://localhost:5000/user/signup
+Endpoint: POST http://localhost:5000/api/user/signup
 
 Body (JSON):
 {
@@ -44,7 +44,7 @@ Body (JSON):
 
 
 ✅ 2. Login API
-Endpoint: POST http://localhost:5000/user/login
+Endpoint: POST http://localhost:5000/api/user/login
 
 Body (JSON):
 {
@@ -58,7 +58,7 @@ Response:
 
 
 ✅ 3. Forgot Password API
-Endpoint: POST http://localhost:5000/user/forgot-password
+Endpoint: POST http://localhost:5000/api/user/forgot-password
 
 Body (JSON):
 {
@@ -72,7 +72,7 @@ Response:
 
 
 ✅ 4. Reset Password API
-Endpoint: POST http://localhost:5000/reset-password/:token
+Endpoint: POST http://localhost:5000/api/user/reset-password/:token
 (Replace :token with the raw token received in email)
 
 Example URL:
@@ -87,6 +87,28 @@ Response:
 {
   "msg": "Password changed"
 }
+
+
+✅ 5. Get User Profile (/me)
+📍 Endpoint:
+GET http://localhost:5000/api/profile/me
+🔐 Headers:
+You need to pass the JWT token in the Authorization header.
+
+➤ Header format:
+Key: Authorization
+Value: Bearer <your_token>
+👉 Example:
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+✅ Response:
+{
+  "id": 1,
+  "firstName": "Shivam",
+  "lastName": "Bhawel",
+  "email": "shivam@test.com"
+}
+💡 Tip:
+If you’re using Postman, go to the Authorization tab → Select Bearer Token → Paste the token you got from login.
 
 
 🧪 How to Test
